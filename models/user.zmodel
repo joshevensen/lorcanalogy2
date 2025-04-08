@@ -1,0 +1,14 @@
+import "./post"
+
+model User {
+    id       String @id @default(cuid())
+    email    String @unique @email @length(6, 32)
+    password String @password @omit
+    posts    Post[]
+
+    // everybody can signup
+    @@allow('create', true)
+
+    // full access by self
+    // @@allow('all', auth() == this)
+}
