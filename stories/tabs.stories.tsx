@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/tabs";
  * one at a time.
  */
 const meta = {
-  title: "Tabs",
+  title: "Panel /Tabs",
   component: Tabs,
   tags: ["autodocs", "!dev"],
   argTypes: {},

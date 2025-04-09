@@ -6,7 +6,7 @@ import { Switch } from "@/components/switch";
  * A control that allows the user to toggle between checked and not checked.
  */
 const meta = {
-  title: "Switch",
+  title: "Form /Switch",
   component: Switch,
   tags: ["autodocs", "!dev"],
   argTypes: {},

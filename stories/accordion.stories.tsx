@@ -12,7 +12,7 @@ import {
  * of content.
  */
 const meta = {
-  title: "Accordion",
+  title: "Panel /Accordion",
   component: Accordion,
   tags: ["autodocs", "!dev"],
   argTypes: {

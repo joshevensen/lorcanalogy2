@@ -8,7 +8,7 @@ import { Toaster } from "@/components/sonner";
  * An opinionated toast component for React.
  */
 const meta: Meta<typeof Toaster> = {
-  title: "Sonner",
+  title: "Overlay /Sonner",
   component: Toaster,
   tags: ["autodocs", "!dev"],
   argTypes: {},

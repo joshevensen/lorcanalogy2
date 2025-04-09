@@ -16,7 +16,7 @@ import {
  * content of the screen.
  */
 const meta: Meta<typeof SheetContent> = {
-  title: "Sheet",
+  title: "Overlay /Sheet",
   component: Sheet,
   tags: ["autodocs", "!dev"],
   argTypes: {

@@ -10,7 +10,7 @@ import {
  * For sighted users to preview content available behind a link.
  */
 const meta = {
-  title: "HoverCard",
+  title: "Overlay /Hover Card",
   component: HoverCard,
   tags: ["autodocs", "!dev"],
   argTypes: {},

@@ -6,7 +6,7 @@ import { Separator } from "@/components/separator";
  * Visually or semantically separates content.
  */
 const meta = {
-  title: "Separator",
+  title: "Panel /Separator",
   component: Separator,
   tags: ["autodocs", "!dev"],
   argTypes: {},

@@ -16,7 +16,7 @@ import {
  * rendering the content underneath inert.
  */
 const meta = {
-  title: "Dialog",
+  title: "Overlay /Dialog",
   component: Dialog,
   tags: ["autodocs", "!dev"],
   argTypes: {},

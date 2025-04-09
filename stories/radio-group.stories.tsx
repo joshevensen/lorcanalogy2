@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/radio-group";
  * the buttons can be checked at a time.
  */
 const meta = {
-  title: "RadioGroup",
+  title: "Form /Radio Group",
   component: RadioGroup,
   tags: ["autodocs", "!dev"],
   argTypes: {},

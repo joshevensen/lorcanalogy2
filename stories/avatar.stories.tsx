@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar";
  * An image element with a fallback for representing the user.
  */
 const meta = {
-  title: "Avatar",
+  title: "Misc /Avatar",
   component: Avatar,
   tags: ["autodocs", "!dev"],
   argTypes: {},

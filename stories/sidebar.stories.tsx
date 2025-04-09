@@ -34,7 +34,7 @@ import {
  * A composable, themeable and customizable sidebar component.
  */
 const meta = {
-  title: "Sidebar",
+  title: "Panel /Sidebar",
   component: Sidebar,
   tags: ["autodocs", "!dev"],
   argTypes: {

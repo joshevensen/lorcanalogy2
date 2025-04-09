@@ -18,7 +18,7 @@ import {
  * Building forms with React Hook Form and Zod.
  */
 const meta: Meta<typeof Form> = {
-  title: "Form",
+  title: "Form /Form",
   component: Form,
   tags: ["autodocs", "!dev"],
   argTypes: {},

@@ -11,7 +11,7 @@ import {
  * An interactive component which expands/collapses a panel.
  */
 const meta = {
-  title: "Collapsible",
+  title: "Panel /Collapsible",
   component: Collapsible,
   tags: ["autodocs", "!dev"],
   argTypes: {},

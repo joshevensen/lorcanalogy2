@@ -7,7 +7,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/toggle-group";
  * A set of two-state buttons that can be toggled on or off.
  */
 const meta = {
-  title: "ToggleGroup",
+  title: "Button /Toggle Group",
   component: ToggleGroup,
   tags: ["autodocs", "!dev"],
   argTypes: {

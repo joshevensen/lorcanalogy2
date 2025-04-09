@@ -7,7 +7,7 @@ import { AspectRatio } from "@/components/aspect-ratio";
  * Displays content within a desired ratio.
  */
 const meta: Meta<typeof AspectRatio> = {
-  title: "AspectRatio",
+  title: "Image /Aspect Ratio",
   component: AspectRatio,
   tags: ["autodocs", "!dev"],
   argTypes: {},

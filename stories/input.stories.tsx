@@ -6,7 +6,7 @@ import { Input } from "@/components/input";
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: "Input",
+  title: "Form /Input",
   component: Input,
   tags: ["autodocs", "!dev"],
   argTypes: {},
