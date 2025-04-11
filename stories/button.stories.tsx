@@ -5,6 +5,10 @@ import { Button } from "@/components/button";
 
 /**
  * Displays a button or a component that looks like a button.
+ *
+ * ```
+ * import { Button } from "@/components/button";
+ * ```
  */
 const meta = {
   title: "Button /Button",

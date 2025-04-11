@@ -1,7 +1,11 @@
+import {PageHeader, PageTitle} from "@/app/(main)/_components/PageHeader";
+
 export default function ArticlePage() {
   return (
     <>
-      <h1>Articles</h1>
+      <PageHeader>
+        <PageTitle>Articles</PageTitle>
+      </PageHeader>
     </>
   )
 }

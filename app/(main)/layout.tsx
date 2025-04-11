@@ -1,17 +1,19 @@
-import Link from "next/link";
+import {SidebarProvider} from "@/components/sidebar";
+import AppSidebar from "@/app/(main)/_components/AppSidebar";
+import Disclaimer from "@/app/_components/Disclaimer";
+
 
 export default function RootLayout({children}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <header className="flex justify-center items-center py-2 gap-10">
-        <Link href="/">Home</Link>
-        <Link href="/articles">Articles</Link>
-        <Link href="/cards">Cards</Link>
-        <Link href="/login">Login</Link>
-      </header>
-      {children}
-    </>
+    <SidebarProvider>
+      <AppSidebar/>
+
+      <main className="py-2 px-4">
+        {children}
+        <Disclaimer/>
+      </main>
+    </SidebarProvider>
   );
 }
