@@ -1,0 +1,13 @@
+import './_base'
+import './card'
+import './deck'
+
+model Ink extends Base {
+  @@map("inks")
+
+  name  String
+  notes String?
+
+  cards Card[]
+  decks Deck[]
+}

@@ -1,0 +1,11 @@
+import './_base'
+import './card'
+
+model Classification extends Base {
+  @@map("classifications")
+
+  name  String
+  notes String?
+
+  cards Card[]
+}

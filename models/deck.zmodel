@@ -1,0 +1,31 @@
+import './_base'
+import './archetype'
+import './card'
+import './ink'
+import './user'
+
+model Deck extends Base {
+  @@map("decks")
+
+  name        String
+  description String?
+
+  user_id     Int
+
+  archetypes  Archetype[]
+  cards       CardsOnDecks[]
+  inks        Ink[]
+  user        User           @relation(fields: [user_id], references: [id])
+}
+
+model CardsOnDecks {
+  qty     Int  @default(0)
+
+  card_id Int
+  deck_id Int
+
+  card    Card @relation(fields: [card_id], references: [id])
+  deck    Deck @relation(fields: [deck_id], references: [id])
+
+  @@id(name: "id", fields: [card_id, deck_id])
+}

@@ -1,0 +1,13 @@
+import './_base'
+import './card'
+import './character'
+
+model Franchise extends Base {
+  @@map("franchises")
+
+  name       String
+  notes      String?
+
+  cards      Card[]
+  characters Character[]
+}

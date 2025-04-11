@@ -1,0 +1,11 @@
+import './_base'
+import './deck'
+
+model Archetype extends Base {
+  @@map("archetypes")
+
+  name  String
+  notes String?
+
+  decks Deck[]
+}

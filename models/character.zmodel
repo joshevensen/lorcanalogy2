@@ -1,0 +1,13 @@
+import './_base'
+import './franchise'
+
+model Character extends Base {
+  @@map("characters")
+
+  name         String
+  notes        String?
+
+  franchise_id Int
+
+  franchise    Franchise @relation(fields: [franchise_id], references: [id])
+}

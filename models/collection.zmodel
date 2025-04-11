@@ -1,0 +1,17 @@
+import './card'
+import './user'
+
+model Collection {
+  @@map("collections")
+
+  plain_count Int     @default(0)
+  foil_count  Int     @default(0)
+  notes       String?
+  card_id     Int
+  user_id     Int
+
+  card        Card    @relation(fields: [card_id], references: [id])
+  user        User    @relation(fields: [user_id], references: [id])
+
+  @@id(name: "id", fields: [user_id, card_id])
+}

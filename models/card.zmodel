@@ -1,0 +1,53 @@
+import './_base'
+import './deck'
+import './classification'
+import './collection'
+import './franchise'
+import './ink'
+import './keyword'
+import './rarity'
+import './set'
+import './type'
+
+model Card extends Base {
+  @@map("cards")
+
+  number          String
+  set_card_number Int
+  name            String
+  version         String?
+  full_name       String
+  inkable         Boolean
+  cost            Int
+  lore            Int?
+  strength        Int?
+  willpower       Int?
+  movement        Int?
+  text            String?
+  image           String?
+  illustrators    String[]
+  layout          Layout
+  is_banned       Boolean?         @default(false)
+
+  tcg_player_id   Int?             @unique
+  franchise_id    Int?
+  rarity_id       Int
+  set_id          Int
+
+  deck            CardsOnDecks[]
+  classifications Classification[]
+  collection      Collection[]
+  franchise       Franchise?       @relation(fields: [franchise_id], references: [id])
+  inks            Ink[]
+  keywords        Keyword[]
+  rarity          Rarity           @relation(fields: [rarity_id], references: [id])
+  set             Set              @relation(fields: [set_id], references: [id])
+  types           Type[]
+
+  @@unique([set_id, number])
+}
+
+enum Layout {
+  normal
+  landscape
+}

@@ -1,12 +1,22 @@
-import "./models/post"
+import "./models/archetype"
+import "./models/card"
+import "./models/character"
+import "./models/classification"
+import "./models/collection"
+import "./models/deck"
+import "./models/franchise"
+import "./models/ink"
+import "./models/keyword"
+import "./models/rarity"
+import "./models/set"
+import "./models/type"
 import "./models/user"
 
 datasource db {
-    provider = 'sqlite'
-    url = 'file:./dev.db'
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
     provider = "prisma-client-js"
 }
-

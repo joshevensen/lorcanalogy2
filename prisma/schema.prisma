@@ -4,28 +4,208 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Post {
-  id        String   @id() @default(cuid())
+enum Layout {
+  normal
+  landscape
+}
+
+model Archetype {
+  id        Int      @id() @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
-  title     String
-  content   String
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
+  name      String
+  notes     String?
+  Decks     Deck[]
+
+  @@map("archetypes")
+}
+
+model Deck {
+  id          Int            @id() @default(autoincrement())
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt()
+  name        String
+  description String?
+  user_id     Int
+  Archetypes  Archetype[]
+  Cards       CardsOnDecks[]
+  Inks        Ink[]
+  User        User           @relation(fields: [user_id], references: [id])
+
+  @@map("decks")
+}
+
+model CardsOnDecks {
+  qty     Int  @default(0)
+  card_id Int
+  deck_id Int
+  card    Card @relation(fields: [card_id], references: [id])
+  deck    Deck @relation(fields: [deck_id], references: [id])
+
+  @@id(name: "id", fields: [card_id, deck_id])
+  @@map("cards_decks")
+}
+
+model Card {
+  id              Int              @id() @default(autoincrement())
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt()
+  number          String
+  set_card_number Int
+  name            String
+  version         String?
+  full_name       String
+  inkable         Boolean
+  cost            Int
+  lore            Int?
+  strength        Int?
+  willpower       Int?
+  movement        Int?
+  text            String?
+  image           String?
+  illustrators    String[]
+  layout          Layout
+  is_banned       Boolean?         @default(false)
+  tcg_player_id   Int?             @unique()
+  franchise_id    Int?
+  rarity_id       Int
+  set_id          Int
+  Deck            CardsOnDecks[]
+  Classifications Classification[]
+  Collection      Collection[]
+  Franchise       Franchise?       @relation(fields: [franchise_id], references: [id])
+  Inks            Ink[]
+  Keywords        Keyword[]
+  Rarity          Rarity           @relation(fields: [rarity_id], references: [id])
+  Set             Set              @relation(fields: [set_id], references: [id])
+  Types           Type[]
+
+  @@unique([set_id, number])
+  @@map("cards")
+}
+
+model Classification {
+  id        Int      @id() @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  name      String
+  notes     String?
+  Cards     Card[]
+
+  @@map("classifications")
+}
+
+model Collection {
+  plain_count Int     @default(0)
+  foil_count  Int     @default(0)
+  notes       String?
+  card_id     Int
+  user_id     Int
+  card        Card    @relation(fields: [card_id], references: [id])
+  user        User    @relation(fields: [user_id], references: [id])
+
+  @@id(name: "id", fields: [user_id, card_id])
+  @@map("collections")
 }
 
 model User {
-  id       String @id() @default(cuid())
-  email    String @unique()
-  password String
-  posts    Post[]
+  id           Int          @id() @default(autoincrement())
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt()
+  auth_id      String       @unique()
+  name         String?
+  allow_trades Boolean      @default(false)
+  country      String?
+  postal_code  String?
+  Decks        Deck[]
+  Collection   Collection[]
+
+  @@map("users")
+}
+
+model Franchise {
+  id         Int         @id() @default(autoincrement())
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt()
+  name       String
+  notes      String?
+  Cards      Card[]
+  Characters Character[]
+
+  @@map("franchises")
+}
+
+model Character {
+  id           Int       @id() @default(autoincrement())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt()
+  name         String
+  notes        String?
+  franchise_id Int
+  Franchise    Franchise @relation(fields: [franchise_id], references: [id])
+
+  @@map("characters")
+}
+
+model Ink {
+  id        Int      @id() @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  name      String
+  notes     String?
+  Cards     Card[]
+  Decks     Deck[]
+
+  @@map("inks")
+}
+
+model Keyword {
+  id        Int      @id() @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  name      String
+  notes     String?
+  Cards     Card[]
+
+  @@map("keywords")
+}
+
+model Rarity {
+  id        Int      @id() @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  name      String
+  notes     String?
+  Cards     Card[]
+
+  @@map("rarities")
+}
+
+model Set {
+  id          Int     @id()
+  name        String  @unique()
+  notes       String?
+  released_at String
+  Cards       Card[]
+
+  @@map("sets")
+}
+
+model Type {
+  id        Int      @id() @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  name      String
+  notes     String?
+  Cards     Card[]
+
+  @@map("types")
 }

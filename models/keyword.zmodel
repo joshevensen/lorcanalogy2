@@ -1,0 +1,11 @@
+import './_base'
+import './card'
+
+model Keyword extends Base {
+  @@map("keywords")
+
+  name  String
+  notes String?
+
+  cards Card[]
+}

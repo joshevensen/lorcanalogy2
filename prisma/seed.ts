@@ -1,44 +1,15 @@
 import { PrismaClient } from '@prisma/client'
+import UserSeeder from "@/seeders/user.seeder";
+import CollectionSeeder from "@/seeders/collection.seeder";
 const prisma = new PrismaClient()
+
 async function main() {
-    const alice = await prisma.user.upsert({
-        where: { email: 'alice@prisma.io' },
-        update: {},
-        create: {
-            email: 'alice@prisma.io',
-            password: 'password',
-            posts: {
-                create: {
-                    title: 'Check out Prisma with Next.js',
-                    content: 'https://www.prisma.io/nextjs',
-                    published: true,
-                },
-            },
-        },
+    const josh = await UserSeeder(prisma, {
+        auth_id: 'd01f1b15-1a7c-4e8f-bade-55485d917311',
+        name: 'Josh Evensen',
     })
-    const bob = await prisma.user.upsert({
-        where: { email: 'bob@prisma.io' },
-        update: {},
-        create: {
-            email: 'bob@prisma.io',
-            password: 'password',
-            posts: {
-                create: [
-                    {
-                        title: 'Follow Prisma on Twitter',
-                        content: 'https://twitter.com/prisma',
-                        published: true,
-                    },
-                    {
-                        title: 'Follow Nexus on Twitter',
-                        content: 'https://twitter.com/nexusgql',
-                        published: true,
-                    },
-                ],
-            },
-        },
-    })
-    console.log({ alice, bob })
+
+    await CollectionSeeder(prisma, josh.id);
 }
 main()
     .then(async () => {

@@ -1,0 +1,12 @@
+import './card'
+
+model Set {
+  @@map("sets")
+
+  id          Int     @id
+  name        String  @unique
+  notes       String?
+  released_at String
+
+  cards       Card[]
+}
