@@ -132,11 +132,7 @@ function Footer() {
 
 export default function AppSidebar() {
   return (
-    <Sidebar
-      collapsible="icon"
-      side="left"
-      variant="floating"
-    >
+    <Sidebar collapsible="icon" side="left" variant="floating">
       <Header/>
 
       <Separator/>

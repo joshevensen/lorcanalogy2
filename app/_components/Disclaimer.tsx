@@ -15,7 +15,7 @@ export default function Disclaimer() {
           <Lorcanalogy/> <strong>is not published, endorsed, or specifically approved by Disney or Ravensburger</strong>. For more
           information about <DisneyLorcana/>, visit https://www.disneylorcana.com/en-US/. </p>
 
-        <p className={'text-xs'}>Also, this content comes from multiple sources around the internet. It's not all mine. I try to give credit
+        <p className={'text-xs'}>Also, this content comes from multiple sources around the internet. It&#39;s not all mine. I try to give credit
           where credit is due, but sometimes I forget where I came across the information.</p>
       </CardContent>
     </Card>
