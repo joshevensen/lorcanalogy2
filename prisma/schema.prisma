@@ -4,8 +4,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
@@ -18,27 +19,27 @@ enum Layout {
 }
 
 model Archetype {
-  id        Int      @id() @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  name      String
-  notes     String?
-  Decks     Deck[]
+  id         Int      @id() @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  name       String
+  notes      String?
+  decks      Deck[]
 
   @@map("archetypes")
 }
 
 model Deck {
   id          Int            @id() @default(autoincrement())
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt()
+  created_at  DateTime       @default(now())
+  updated_at  DateTime       @updatedAt()
   name        String
   description String?
   user_id     Int
-  Archetypes  Archetype[]
-  Cards       CardsOnDecks[]
-  Inks        Ink[]
-  User        User           @relation(fields: [user_id], references: [id])
+  archetypes  Archetype[]
+  cards       CardsOnDecks[]
+  inks        Ink[]
+  user        User           @relation(fields: [user_id], references: [id])
 
   @@map("decks")
 }
@@ -51,13 +52,12 @@ model CardsOnDecks {
   deck    Deck @relation(fields: [deck_id], references: [id])
 
   @@id(name: "id", fields: [card_id, deck_id])
-  @@map("cards_decks")
 }
 
 model Card {
   id              Int              @id() @default(autoincrement())
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt()
+  created_at      DateTime         @default(now())
+  updated_at      DateTime         @updatedAt()
   number          String
   set_card_number Int
   name            String
@@ -78,27 +78,27 @@ model Card {
   franchise_id    Int?
   rarity_id       Int
   set_id          Int
-  Deck            CardsOnDecks[]
-  Classifications Classification[]
-  Collection      Collection[]
-  Franchise       Franchise?       @relation(fields: [franchise_id], references: [id])
-  Inks            Ink[]
-  Keywords        Keyword[]
-  Rarity          Rarity           @relation(fields: [rarity_id], references: [id])
-  Set             Set              @relation(fields: [set_id], references: [id])
-  Types           Type[]
+  deck            CardsOnDecks[]
+  classifications Classification[]
+  collection      Collection[]
+  franchise       Franchise?       @relation(fields: [franchise_id], references: [id])
+  inks            Ink[]
+  keywords        Keyword[]
+  rarity          Rarity           @relation(fields: [rarity_id], references: [id])
+  set             Set              @relation(fields: [set_id], references: [id])
+  types           Type[]
 
   @@unique([set_id, number])
   @@map("cards")
 }
 
 model Classification {
-  id        Int      @id() @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  name      String
-  notes     String?
-  Cards     Card[]
+  id         Int      @id() @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  name       String
+  notes      String?
+  cards      Card[]
 
   @@map("classifications")
 }
@@ -118,73 +118,73 @@ model Collection {
 
 model User {
   id           Int          @id() @default(autoincrement())
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt()
+  created_at   DateTime     @default(now())
+  updated_at   DateTime     @updatedAt()
   auth_id      String       @unique()
   name         String?
   allow_trades Boolean      @default(false)
   country      String?
   postal_code  String?
-  Decks        Deck[]
-  Collection   Collection[]
+  decks        Deck[]
+  collection   Collection[]
 
   @@map("users")
 }
 
 model Franchise {
   id         Int         @id() @default(autoincrement())
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt()
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt()
   name       String
   notes      String?
-  Cards      Card[]
-  Characters Character[]
+  cards      Card[]
+  characters Character[]
 
   @@map("franchises")
 }
 
 model Character {
   id           Int       @id() @default(autoincrement())
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt()
+  created_at   DateTime  @default(now())
+  updated_at   DateTime  @updatedAt()
   name         String
   notes        String?
   franchise_id Int
-  Franchise    Franchise @relation(fields: [franchise_id], references: [id])
+  franchise    Franchise @relation(fields: [franchise_id], references: [id])
 
   @@map("characters")
 }
 
 model Ink {
-  id        Int      @id() @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  name      String
-  notes     String?
-  Cards     Card[]
-  Decks     Deck[]
+  id         Int      @id() @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  name       String
+  notes      String?
+  cards      Card[]
+  decks      Deck[]
 
   @@map("inks")
 }
 
 model Keyword {
-  id        Int      @id() @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  name      String
-  notes     String?
-  Cards     Card[]
+  id         Int      @id() @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  name       String
+  notes      String?
+  cards      Card[]
 
   @@map("keywords")
 }
 
 model Rarity {
-  id        Int      @id() @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  name      String
-  notes     String?
-  Cards     Card[]
+  id         Int      @id() @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  name       String
+  notes      String?
+  cards      Card[]
 
   @@map("rarities")
 }
@@ -194,18 +194,18 @@ model Set {
   name        String  @unique()
   notes       String?
   released_at String
-  Cards       Card[]
+  cards       Card[]
 
   @@map("sets")
 }
 
 model Type {
-  id        Int      @id() @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  name      String
-  notes     String?
-  Cards     Card[]
+  id         Int      @id() @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt()
+  name       String
+  notes      String?
+  cards      Card[]
 
   @@map("types")
 }
