@@ -10,4 +10,6 @@ model Ink extends Base {
 
   cards Card[]
   decks Deck[]
+
+  @@allow('read', true)
 }

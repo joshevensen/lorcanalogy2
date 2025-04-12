@@ -45,6 +45,8 @@ model Card extends Base {
   types           Type[]
 
   @@unique([set_id, number])
+
+  @@allow('read', true)
 }
 
 enum Layout {

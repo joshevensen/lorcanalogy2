@@ -9,4 +9,6 @@ model Set {
   released_at String
 
   cards       Card[]
+
+  @@allow('read', true)
 }

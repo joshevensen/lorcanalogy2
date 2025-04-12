@@ -13,4 +13,6 @@ model User extends Base {
 
   decks        Deck[]
   collection   Collection[]
+
+  @@allow('read', true)
 }

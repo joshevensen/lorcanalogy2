@@ -10,4 +10,6 @@ model Franchise extends Base {
 
   cards      Card[]
   characters Character[]
+
+  @@allow('read', true)
 }

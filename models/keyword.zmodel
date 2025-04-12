@@ -8,4 +8,6 @@ model Keyword extends Base {
   notes String?
 
   cards Card[]
+
+  @@allow('read', true)
 }

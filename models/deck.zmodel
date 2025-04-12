@@ -16,6 +16,8 @@ model Deck extends Base {
   cards       CardsOnDecks[]
   inks        Ink[]
   user        User           @relation(fields: [user_id], references: [id])
+
+  @@allow('read', true)
 }
 
 model CardsOnDecks {
@@ -28,4 +30,6 @@ model CardsOnDecks {
   deck    Deck @relation(fields: [deck_id], references: [id])
 
   @@id(name: "id", fields: [card_id, deck_id])
+
+  @@allow('read', true)
 }

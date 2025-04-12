@@ -8,4 +8,6 @@ model Archetype extends Base {
   notes String?
 
   decks Deck[]
+
+  @@allow('read', true)
 }

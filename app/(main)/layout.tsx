@@ -10,8 +10,8 @@ export default function RootLayout({children}: Readonly<{
     <SidebarProvider>
       <AppSidebar/>
 
-      <main className="py-2 px-4">
-        {children}
+      <main className="pt-2 px-4 pb-6 space-y-8">
+        <div>{children}</div>
         <Disclaimer/>
       </main>
     </SidebarProvider>
