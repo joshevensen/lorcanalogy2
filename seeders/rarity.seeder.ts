@@ -1,20 +1,18 @@
-import type {PrismaClient, Set} from "@prisma/client";
-import type {SET} from "./data/data.types";
+import {Prisma, PrismaClient} from "@prisma/client";
+import RarityCreateInput = Prisma.RarityCreateInput;
+import {findOrCreateRarity} from "../lib/models";
 
-export default function (prisma: PrismaClient, dataSet: SET) {
-  for (const set of Sets) {
-    await setSeeder(prisma, set);
+export default async function raritySeeder(prisma: PrismaClient) {
+  const rarities: RarityCreateInput[] = [
+    {name: 'Common'},
+    {name: 'Uncommon'},
+    {name: 'Rare'},
+    {name: 'Super Rare'},
+    {name: 'Legendary'},
+    {name: 'Enchanted'},
+  ]
+
+  for (const rarity of rarities) {
+    await findOrCreateRarity(prisma, rarity.name)
   }
-
-  const set: Set = {
-    id: Number(dataSet.code),
-    name: dataSet.name,
-    releasedAt: dataSet.released_at
-  }
-
-  return prisma.set.upsert({
-    where: {name: set.name},
-    update: set,
-    create: set,
-  })
 }

@@ -1,15 +1,9 @@
 import { PrismaClient } from '@prisma/client'
-import UserSeeder from "@/seeders/user.seeder";
-import CollectionSeeder from "@/seeders/collection.seeder";
 const prisma = new PrismaClient()
+import seeder from "../seeders";
 
 async function main() {
-    const josh = await UserSeeder(prisma, {
-        auth_id: 'd01f1b15-1a7c-4e8f-bade-55485d917311',
-        name: 'Josh Evensen',
-    })
-
-    await CollectionSeeder(prisma, josh.id);
+    await seeder(prisma)
 }
 main()
     .then(async () => {

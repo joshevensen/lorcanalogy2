@@ -1,20 +1,19 @@
-import type {PrismaClient, Set} from "@prisma/client";
-import type {SET} from "./data/data.types";
+import {Prisma, PrismaClient} from "@prisma/client";
+import SetCreateInput = Prisma.SetCreateInput;
+import {Sets} from "../seeders/data/sets";
 
-export default function (prisma: PrismaClient, dataSet: SET) {
+export default async function setSeeder(prisma: PrismaClient) {
   for (const set of Sets) {
-    await setSeeder(prisma, set);
-  }
+    const newSet: SetCreateInput = {
+      id: Number(set.code),
+      name: set.name,
+      released_at: set.released_at
+    }
 
-  const set: Set = {
-    id: Number(dataSet.code),
-    name: dataSet.name,
-    releasedAt: dataSet.released_at
+    await prisma.set.upsert({
+      where: {name: set.name},
+      update: {},
+      create: newSet,
+    })
   }
-
-  return prisma.set.upsert({
-    where: {name: set.name},
-    update: set,
-    create: set,
-  })
 }

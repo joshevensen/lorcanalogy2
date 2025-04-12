@@ -30,7 +30,22 @@ import type {CARD} from "./data/data.types";
 //   await cardSeeder(prisma, 7, card)
 // }
 
-export default function CardSeeder(prisma: PrismaClient, setId: number, dataCard: CARD) {
+// export default function CardSeeder(prisma: PrismaClient, setId: number, dataCard: CARD) {
+  // const card = mapCard(dataCard)
+  //
+  // return prisma.card.upsert({
+  //   where: {
+  //     setId_number: {
+  //       setId: setId,
+  //       number: dataCard.collector_number
+  //     }
+  //   },
+  //   update: card,
+  //   create: card,
+  // })
+// }
+
+// function mapCard(card: CARD): Card {
   // const removeLetters = parseInt(dataCard.collector_number);
   // const backToString = String(removeLetters);
   // const cardNumberWithZeros = backToString.padStart(3, '0');
@@ -45,48 +60,31 @@ export default function CardSeeder(prisma: PrismaClient, setId: number, dataCard
   // const rarity = camelCase(dataCard.rarity);
   //
   // const typeString = camelCase(dataCard.type.join(''));
-  // const type = typeString === 'actionSong' ? 'song' : typeString;
+  // // const type = typeString === 'actionSong' ? 'song' : typeString;
   //
   // const layout = camelCase(dataCard.layout);
   //
-  // const card: Omit<Card, 'id' | 'franchiseId'> = {
-  //   setId: setId,
-  //   setNumber,
-  //   tcgPlayerId: dataCard.tcgplayer_id || null,
+  // return {
+  //   set_id: setId,
+  //   set_card_number: setNumber,
+  //   tcg_player_id: dataCard.tcgplayer_id || null,
   //   number: dataCard.collector_number,
   //   name: dataCard.name,
   //   version: dataCard.version || null,
-  //   fullName,
-  //   ink1: Ink[ink1 as keyof typeof Ink],
-  //   ink2: ink2 ? Ink[ink2 as keyof typeof Ink] : null,
+  //   full_name: fullName,
   //   inkable: dataCard.inkwell,
-  //   rarity: Rarity[rarity as keyof typeof Rarity],
-  //   type: Type[type as keyof typeof Type],
   //   cost: dataCard.cost,
   //   lore: dataCard.lore,
   //   strength: dataCard.strength,
   //   willpower: dataCard.willpower,
   //   movement: dataCard.move_cost,
-  //   classifications: dataCard.classifications || [],
-  //   keywords: dataCard.keywords || [],
   //   text: convertTextToHTML(dataCard.text),
   //   image: dataCard.image_uris.digital.normal,
   //   illustrators: dataCard.illustrators || [],
   //   layout: Layout[layout as keyof typeof Layout],
-  //   isBanned: false
+  //   is_banned: false
   // }
-  //
-  // return prisma.card.upsert({
-  //   where: {
-  //     setId_number: {
-  //       setId: setId,
-  //       number: dataCard.collector_number
-  //     }
-  //   },
-  //   update: card,
-  //   create: card,
-  // })
-}
+// }
 
 // function convertTextToHTML(text: string | null): string {
 //   if (!text) return '';

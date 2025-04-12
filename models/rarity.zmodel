@@ -4,7 +4,8 @@ import './card'
 model Rarity extends Base {
   @@map("rarities")
 
-  name  String
+  name  String @unique
+  image String?
   notes String?
 
   cards Card[]

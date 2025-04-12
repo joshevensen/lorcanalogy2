@@ -1,20 +1,18 @@
-import type {PrismaClient, Set} from "@prisma/client";
-import type {SET} from "./data/data.types";
+import {Prisma, PrismaClient} from "@prisma/client";
+import InkCreateInput = Prisma.InkCreateInput;
+import {findOrCreateInk} from "../lib/models";
 
-export default function (prisma: PrismaClient, dataSet: SET) {
-  for (const set of Sets) {
-    await setSeeder(prisma, set);
+export default async function inkSeeder(prisma: PrismaClient) {
+  const inks: InkCreateInput[] = [
+    {name: 'Amber'},
+    {name: 'Amethyst'},
+    {name: 'Emerald'},
+    {name: 'Ruby'},
+    {name: 'Sapphire'},
+    {name: 'Steel'},
+  ]
+
+  for (const ink of inks) {
+    await findOrCreateInk(prisma, ink.name)
   }
-
-  const set: Set = {
-    id: Number(dataSet.code),
-    name: dataSet.name,
-    releasedAt: dataSet.released_at
-  }
-
-  return prisma.set.upsert({
-    where: {name: set.name},
-    update: set,
-    create: set,
-  })
 }
