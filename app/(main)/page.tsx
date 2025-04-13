@@ -1,7 +1,11 @@
+import {PageHeader, PageTitle} from "@/app/(main)/_components/PageHeader";
+
 export default function Home() {
   return (
     <>
-      <h1>Home</h1>
+      <PageHeader>
+        <PageTitle>Home</PageTitle>
+      </PageHeader>
     </>
   );
 }

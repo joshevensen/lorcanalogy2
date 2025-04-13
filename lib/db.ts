@@ -7,5 +7,3 @@ const db = enhance(prisma);
 // const db = enhance(prisma, { user: getSessionUser() });
 
 export default db;
-
-export const runtime = 'edge';

@@ -1,7 +1,11 @@
+import {PageHeader, PageTitle} from "@/app/(main)/_components/PageHeader";
+
 export default function CardPage() {
   return (
     <>
-      <h1>Decks</h1>
+      <PageHeader>
+        <PageTitle>Decks</PageTitle>
+      </PageHeader>
     </>
   )
 }
