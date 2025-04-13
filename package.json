@@ -16,7 +16,7 @@
     "component": "npx shadcn@latest add",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "postinstall": "prisma generate"
+    "postinstall": "zenstack generate"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
