@@ -1,6 +1,7 @@
 import {PageHeader, PageTitle} from "@/app/(main)/_components/PageHeader";
 import db from "@/lib/db";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/card";
+import {Set, Franchise} from '@prisma/client'
 
 export default async function InfoPage() {
   const sets = await db.set.findMany();
@@ -19,7 +20,7 @@ export default async function InfoPage() {
           </CardHeader>
 
           <CardContent>
-            {sets.map((set) => (
+            {sets.map((set: Set) => (
               <div key={set.id}>{set.name}</div>
             ))}
           </CardContent>
@@ -31,7 +32,7 @@ export default async function InfoPage() {
           </CardHeader>
 
           <CardContent>
-            {franchises.map((franchise) => (
+            {franchises.map((franchise: Franchise) => (
               <div key={franchise.id}>{franchise.name}</div>
             ))}
           </CardContent>
